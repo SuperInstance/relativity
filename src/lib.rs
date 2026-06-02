@@ -1,4 +1,4 @@
-//! # relativity
+//! # spacetime-rs
 //!
 //! Special and general relativity: spacetime, Lorentz transformations,
 //! curved geometry, geodesics, and cosmology.

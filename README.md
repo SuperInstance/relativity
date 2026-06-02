@@ -1,4 +1,4 @@
-# relativity
+# spacetime-rs
 
 Special and general relativity in Rust. Lorentz transforms to geodesics.
 
@@ -12,13 +12,13 @@ A pure-Rust library for special and general relativity — spacetime geometry, L
 
 ```toml
 [dependencies]
-relativity = "0.1"
+spacetime-rs = "0.1"
 ```
 
 Or:
 
 ```sh
-cargo add relativity
+cargo add spacetime-rs
 ```
 
 ---
@@ -28,8 +28,8 @@ cargo add relativity
 ### Lorentz Boost a 4-Vector
 
 ```rust
-use relativity::minkowski::FourVector;
-use relativity::lorentz::{boost, Axis, gamma};
+use spacetime_rs::minkowski::FourVector;
+use spacetime_rs::lorentz::{boost, Axis, gamma};
 
 let event = FourVector::from_spatial(1e-6, 100.0, 0.0, 0.0); // t=1μs, x=100m
 println!("Interval s² = {:.3}", event.interval());
@@ -42,7 +42,7 @@ println!("Interval preserved: {:.3}", boosted.interval());
 ### Time Dilation
 
 ```rust
-use relativity::kinematics::{time_dilated, length_contracted};
+use spacetime_rs::kinematics::{time_dilated, length_contracted};
 
 let earth_time = time_dilated(1.0, 0.99);  // 1s proper time at 0.99c
 let ship_length = length_contracted(100.0, 0.99);
@@ -51,7 +51,7 @@ let ship_length = length_contracted(100.0, 0.99);
 ### Energy-Momentum
 
 ```rust
-use relativity::energy_momentum::{FourMomentum, relativistic_kinetic_energy};
+use spacetime_rs::energy_momentum::{FourMomentum, relativistic_kinetic_energy};
 
 let p = FourMomentum::from_rest_mass_and_beta(1.0, 0.8);
 println!("E = {:.3e} J", p.energy());
@@ -61,8 +61,8 @@ println!("E² = (pc)² + (mc²)² holds: {}", p.verify_energy_momentum_relation(
 ### Schwarzschild Geodesic
 
 ```rust
-use relativity::geodesic::{geodesic_step_rk4, isco_radius};
-use relativity::tensor::schwarzschild_radius;
+use spacetime_rs::geodesic::{geodesic_step_rk4, isco_radius};
+use spacetime_rs::tensor::schwarzschild_radius;
 
 let r_s = schwarzschild_radius(1.989e30);
 println!("ISCO: {:.0} m", isco_radius(r_s));
@@ -71,7 +71,7 @@ println!("ISCO: {:.0} m", isco_radius(r_s));
 ### Cosmology (ΛCDM)
 
 ```rust
-use relativity::cosmology::LCDMParams;
+use spacetime_rs::cosmology::LCDMParams;
 
 let params = LCDMParams::planck2018();
 println!("Ω_m = {:.3}, Ω_Λ = {:.3}", params.omega_m, params.omega_lambda);
